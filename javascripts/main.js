@@ -1,5 +1,5 @@
 /**
- * Created by Adam_Cole on 7/6/14.
+ * Created by Adam_Cole AND Elana Stroud on 7/6/14.
  */
 /** @jsx React.DOM */
 
