@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-require(["react", "jsx!react-components/buttonBox", "jsx!react-components/scoreBoard","models/model"], function(React, buttonBox, scoreBoard, colorModel) {
+require(["react", "jsx!react-components/buttonBox", "jsx!react-components/scoreBoard","models/model","jsx!react-components/timer"], function(React, buttonBox, scoreBoard, colorModel, timer) {
     var App = React.createClass({
         getInitialState: function() {
             return {
@@ -31,6 +31,7 @@ require(["react", "jsx!react-components/buttonBox", "jsx!react-components/scoreB
                     <h1 className="title"> REACT! </h1>
                     <scoreBoard blueCount={this.state.model.getBlueCount()} redCount={this.state.model.getRedCount()}/>
                     <buttonBox handleButtonClick={this.handleButtonClick} isBlue={this.state.model.getIsBlue()}/>
+                    <timer />
                 </div>
                 )
         }
