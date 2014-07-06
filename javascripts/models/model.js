@@ -37,7 +37,6 @@ define([],function() {
     var switchMode = function() {
         var rand = Math.random();
         if (rand <= .5) isBlue = !isBlue;
-        console.log(rand);
     }
 
     return {

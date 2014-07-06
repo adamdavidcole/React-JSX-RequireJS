@@ -4,34 +4,47 @@ require(["react", "jsx!react-components/buttonBox", "jsx!react-components/scoreB
         getInitialState: function() {
             return {
                       model: colorModel,
-                      color: 'lightsalmon'
+                      color: 'lightsalmon',
+                      isTimerOn: true
             }
         },
+
         handleButtonClick: function(btn) {
-            if(btn) {
-                this.state.model.incrementBlue();
+            if (this.state.isTimerOn) {
+                if (btn) {
+                    this.state.model.incrementBlue();
 
-            } else {
-                this.state.model.incrementRed();
+                } else {
+                    this.state.model.incrementRed();
 
+                }
+                this.setState({color: getRandomColor()});
+                this.state.model.switchMode();
+                this.setState({model: this.state.model});
             }
-            this.setState({color : getRandomColor()});
-            this.state.model.switchMode();
-            this.setState({model:this.state.model});
         },
-        handleState: function() {
 
+        handleTimerOver: function() {
+            this.setState({model:this.state.model, isTimerOn: false});
         },
+
+        handleResetButton: function() {
+            this.state.model.resetBlue();
+            this.state.model.resetRed();
+            this.setState({model:this.state.model, isTimerOn: true});
+        },
+
         render: function() {
             var style = {
                 backgroundColor : this.state.color
             };
+            var finalScore = this.state.model.getBlueCount() - this.state.model.getRedCount();
             return (
                 <div  className="window" style={style}>
                     <h1 className="title"> REACT! </h1>
                     <scoreBoard blueCount={this.state.model.getBlueCount()} redCount={this.state.model.getRedCount()}/>
                     <buttonBox handleButtonClick={this.handleButtonClick} isBlue={this.state.model.getIsBlue()}/>
-                    <timer />
+                    <timer handleResetButton={this.handleResetButton}  handleTimerOver={this.handleTimerOver} score={finalScore}/>
                 </div>
                 )
         }

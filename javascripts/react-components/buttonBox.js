@@ -3,8 +3,6 @@ define(["react","jsx!react-components/colorButton"],function(React, colorButton)
     return React.createClass ({
 
         handleButtonClick: function (btn) {
-//            this.buttonClick(btn)
-//            console.log(btn);
             this.props.handleButtonClick(btn);
         },
         render: function () {
